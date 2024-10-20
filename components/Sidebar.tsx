@@ -1,8 +1,8 @@
 "use client"
 
 import React from 'react'
-import { useLocation, Link } from 'react-router-dom'
-import { Leaf, Command, Camera, Code, User, Settings, LogOut } from 'lucide-react'
+import { usePathname } from 'next/navigation'
+import { Leaf, Command, Code, User, Settings, LogOut } from 'lucide-react'
 import {
   Sidebar,
   SidebarContent,
@@ -16,6 +16,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
+import Link from 'next/link'
 
 const navItems = [
   { title: 'Home', icon: Leaf, path: '/' },
@@ -25,7 +26,7 @@ const navItems = [
 ]
 
 export default function SidebarComponent() {
-  const location = useLocation()
+  const pathname = usePathname()
   const { state } = useSidebar()
 
   return (
@@ -44,7 +45,7 @@ export default function SidebarComponent() {
             <SidebarMenuItem key={item.path}>
               <SidebarMenuButton
                 asChild
-                className={location.pathname === item.path ? 'bg-primary text-primary-foreground' : ''}
+                className={pathname === item.path ? 'bg-primary text-primary-foreground' : ''}
               >
                 <Link to={item.path}>
                   <item.icon className="h-5 w-5 mr-2" />
