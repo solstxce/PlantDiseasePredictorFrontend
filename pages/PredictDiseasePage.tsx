@@ -29,7 +29,7 @@ export default function PredictDiseasePage() {
     formData.append('file', selectedFile)
 
     try {
-      const response = await axios.post('http://localhost:5000/predict', formData, {
+      const response = await axios.post('http://localhost:5003/predict', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       })
       setPrediction(response.data)
